@@ -25,7 +25,7 @@ public class recherche {
         int compteur = 0;
         int compteur_liste = 0;
 
-        for (Object fichier : fichiers) {
+        for (Object fichier : fichiers) {       //compte le nombre de videos dans le fichiers
             if (String.valueOf(fichier).contains(video)) {
                 compteur++;
             }
@@ -33,7 +33,7 @@ public class recherche {
 
         String [] temp = new String [compteur];
 
-        for (Object fichier : fichiers) {
+        for (Object fichier : fichiers) {       //fait la recherche en direct
             if (String.valueOf(fichier).contains(video)) {
                 temp[compteur_liste] = String.valueOf(fichier);
                 compteur_liste++;
@@ -42,7 +42,7 @@ public class recherche {
         return temp;
     }
 
-    static void affichage(String[] liste){
+    static void affichage(String[] liste){          //affiche le string
         for (String s : liste) {
             System.out.println(s);
         }

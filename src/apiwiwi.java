@@ -3,16 +3,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.*;
-import java.util.Arrays;
 
 public class apiwiwi {
 
-
-
-    public static void main(String [] args) throws IOException {
-        //https://api.themoviedb.org/3/movie/550?api_key=f3d7678cf05f1b8ce1d237f960b98786
-        //https://api.themoviedb.org/3/search/movie?api_key=f3d7678cf05f1b8ce1d237f960b98786&query=the+avengers
-        URL url = new URL("https://api.themoviedb.org/3/search/movie?api_key=f3d7678cf05f1b8ce1d237f960b98786&query=alice");
+    public static void api(URL url) throws IOException {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
         con.setDoOutput(true);
@@ -25,10 +19,14 @@ public class apiwiwi {
         System.out.println("Output from Server .... \n");
         while ((output = br.readLine()) != null) {
             //System.out.println(Arrays.toString(output.split("},\\{")));
+            System.out.println(output);
+
+            /*
             String [] tab = (output.split("},\\{"));
             for(int i = 0 ; i < tab.length ; i++){
                 System.out.println(tab[i]);
             }
+             */
             /*
             for(int i = 0 ; i < output.length();i++){
                 if(output.charAt(i)==','){
@@ -40,4 +38,19 @@ public class apiwiwi {
             }*/
         }
     }
+
+
+
+    public static void main(String [] args) throws IOException {
+        //https://api.themoviedb.org/3/movie/550?api_key=f3d7678cf05f1b8ce1d237f960b98786
+        //https://api.themoviedb.org/3/search/movie?api_key=f3d7678cf05f1b8ce1d237f960b98786&query=the+avengers
+        String lefilm = "qu'est ce qu'on a fait au bon dieu".replace(" ","+");
+        URL url = new URL("https://www.allocine.fr/rechercher/?q="+lefilm);
+        try {
+            api(url);
+        }
+        catch(Exception e){
+            System.err.println("Pas de connection internet ! Connectez vous a internet");
+        }
+    }//
 }

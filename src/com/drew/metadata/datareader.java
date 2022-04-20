@@ -102,24 +102,25 @@ public class datareader {
             // Each Directory stores values in Tag objects
             //
             //System.out.println(directory);
-            if(data.equals("ALL")) {
+            if(data.equals("ALL")) {                                //pour afficher toutes les metadatas
                 for (Tag tag : directory.getTags()) {
                     System.out.println(tag);
                 }
+                return "ALL metadata:";
             }
             else {
                 for (Tag tag : directory.getTags()) {
                     String [] tempo = String.valueOf(tag).split("-");
-                    if (tempo[0].contains(data)) {
+                    if (tempo[0].contains(data)) {                      //si data != "ALL" alors on affiche la data qu'on a saisi, s'il elle existe bien
                         boolean vrai = false;
                         StringBuilder temp = new StringBuilder();
                         for(int jj = 0; jj < String.valueOf(tag).length();jj++){
-                            if(String.valueOf(tag).charAt(jj) == '-' && !vrai){
+                            if(String.valueOf(tag).charAt(jj) == '-' && !vrai){                 //on prend les données a partir du seperateur -
                                 vrai = true;
-                                jj+=2;
+                                jj+=2;                                                      //pour sauter les espaces aprse le "-"
                             }
                             if(vrai){
-                                temp.append(String.valueOf(tag).charAt(jj));
+                                temp.append(String.valueOf(tag).charAt(jj));                //lorsque true alors on commence a copier la metadata
                             }
                         }
                         return temp.toString();
